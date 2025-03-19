@@ -1,0 +1,25 @@
+type: edu
+files:
+  - name: bot/bot.py
+    visible: true
+    learner_created: false
+  - name: test/__init__.py
+    visible: false
+    learner_created: false
+  - name: test/tests.py
+    visible: false
+    learner_created: false
+  - name: tests.py
+    visible: false
+    learner_created: false
+feedback_link: https://hyperskill.org/projects/97/stages/534/implement#comment
+status: Failed
+feedback:
+  message: "Wrong answer in test #1\n\nYou should output exactly 2 lines!\nLines found:\
+    \ 4Your output:\nHello! My name is Aid.\nI was created in 2023.\nPlease, remind\
+    \ me your name.\nWhat a great name you have, !\n\nPlease find below the output\
+    \ of your program during this failed test.\nNote that the '>' character indicates\
+    \ the beginning of the input line.\n\n---\n\nHello! My name is Aid.\nI was created\
+    \ in 2023.\nPlease, remind me your name.\n> \nWhat a great name you have, !"
+  time: "Wed, 19 Mar 2025 18:30:08 UTC"
+record: 1
