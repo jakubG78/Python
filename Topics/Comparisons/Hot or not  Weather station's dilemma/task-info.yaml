@@ -1,0 +1,9 @@
+type: unsupported
+custom_name: Hot or not? Weather station's dilemma
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/49323#comment
+status: Solved
+record: -1

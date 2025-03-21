@@ -1,49 +1,37 @@
+import re
 from hstest.stage_test import *
 from hstest.test_case import TestCase
 
 CheckResult.correct = lambda: CheckResult(True, '')
 CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
+correct_feedback = ("Great job on completing Stage 1! You've successfully introduced your chat bot. As you progress "
+                    "through the next stages, your bot will learn how to count and guess age. By the final stage, "
+                    "you'll have an interactive quiz bot that can respond to you. Keep up the good work, and see how "
+                    "your program evolves with each stage!")
+
+
 class ChattyBotTest(StageTest):
     def generate(self) -> List[TestCase]:
-        return [
-            TestCase(stdin="John\n1\n2\n1", attach=("John", 22)),
-            TestCase(stdin="Nick\n2\n0\n0", attach=("Nick", 35))
-        ]
+        return [TestCase()]
 
     def check(self, reply: str, clue: Any) -> CheckResult:
         lines = reply.strip().splitlines()
-        if len(lines) != 7:
+        if len(lines) != 2:
             return CheckResult.wrong(
-                "You should output 7 lines!\n" +
+                "You should output exactly 2 lines!\n" +
                 f"Lines found: {len(lines)}"
                 f"Your output:\n"
                 f"{reply.strip()}"
             )
 
-        line_with_name = lines[3].lower()
-        name = clue[0].lower()
-
-        if name not in line_with_name:
+        if not re.match(".*\\d.*", lines[1]):
             return CheckResult.wrong(
-                "The name was " + clue[0] + "\n" +
-                "But the 4-th line was:\n" +
-                "\"" + lines[3] + "\"\n\n" +
-                "4-th line should contain a name of the user"
+                "The second line should contain a year!\n" +
+                "Your second line: \"" + lines[1] + "\""
             )
 
-        line_with_age = lines[6].lower()
-        age = str(clue[1])
-
-        if age not in line_with_age:
-            return CheckResult.wrong(
-                "Can't find a correct age " +
-                "in the last line of output! " +
-                "Maybe you calculated the age wrong?\n\n" +
-                "Your last line: \n" + "\"" + lines[6] + "\""
-            )
-
-        return CheckResult.correct()
+        return CheckResult(True, correct_feedback)
 
 
 if __name__ == '__main__':

@@ -6,7 +6,6 @@ summary: <p>Create a simple console chat bot from scratch that will communicate 
 programming_language: Python
 content:
   - Simple Chat Bot with Python
-additional_files:
-  - name: requirements.txt
+  - Topics
 mode: Study
 yaml_version: 2

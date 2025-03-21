@@ -1,16 +1,14 @@
-print('Hello! My name is Aid.')
-print('I was created in 2020.')
-print('Please, remind me your name.')
+def greet(bot_name, birth_year):
+    print(f"Hello! My name is {bot_name}.")
+    print(f"I was created in {birth_year}.")
 
-name = input()
 
-print('What a great name you have, ' + name + '!')
-print('Let me guess your age.')
-print('Enter remainders of dividing your age by 3, 5 and 7.')
+def remind_name():
+    print("Please, remind me your name.")
+    # reading a name
+    print("What a great name you have, ", input(), "!", sep="", end="")
 
-# reading all remainders
-threeReminder = int(input())
-fiveReminder = int(input())
-sevenReminder = int(input())
-age = (threeReminder * 70 + fiveReminder * 21 + sevenReminder * 15) % 105
-print("Your age is ", age, "; that's a good time to start programming!", sep="")
+
+# Now we can use these functions
+greet("Aid", 2023)
+remind_name()
