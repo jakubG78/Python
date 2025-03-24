@@ -1,37 +1,72 @@
-import re
 from hstest.stage_test import *
 from hstest.test_case import TestCase
 
 CheckResult.correct = lambda: CheckResult(True, '')
 CheckResult.wrong = lambda feedback: CheckResult(False, feedback)
 
-correct_feedback = ("Great job on completing Stage 1! You've successfully introduced your chat bot. As you progress "
-                    "through the next stages, your bot will learn how to count and guess age. By the final stage, "
-                    "you'll have an interactive quiz bot that can respond to you. Keep up the good work, and see how "
-                    "your program evolves with each stage!")
-
 
 class ChattyBotTest(StageTest):
     def generate(self) -> List[TestCase]:
-        return [TestCase()]
+        return [
+            TestCase(stdin="Marry\n1\n0\n5\n10", attach=("Marry", 40, 10))
+        ]
 
     def check(self, reply: str, clue: Any) -> CheckResult:
         lines = reply.strip().splitlines()
-        if len(lines) != 2:
+        length = 9 + clue[2] + 1
+        if len(lines) - length == -1 and lines[8].strip().replace(' ', '') != '0!':
             return CheckResult.wrong(
-                "You should output exactly 2 lines!\n" +
-                f"Lines found: {len(lines)}"
+                f"You should output {length} lines " +
+                f"(for the count number {clue[2]}).\n"
+                f"Make sure that the the bot starts counting from 0.\n" +
+                f"Lines found: {len(lines)}\n"
+                f"Your output:\n"
+                f"{reply.strip()}"
+            )
+        elif len(lines) != length:
+            return CheckResult.wrong(
+                f"You should output {length} lines " +
+                f"(for the count number {clue[2]}).\n" +
+                f"Lines found: {len(lines)}\n"
                 f"Your output:\n"
                 f"{reply.strip()}"
             )
 
-        if not re.match(".*\\d.*", lines[1]):
+        line_with_name = lines[3].lower()
+        name = clue[0].lower()
+
+        if name not in line_with_name:
             return CheckResult.wrong(
-                "The second line should contain a year!\n" +
-                "Your second line: \"" + lines[1] + "\""
+                "The name was " + clue[0] + "\n" +
+                "But the 4-th line was:\n" +
+                "\"" + lines[3] + "\"\n\n" +
+                "4-th line should contain a name of the user"
             )
 
-        return CheckResult(True, correct_feedback)
+        line_with_age = lines[6].lower()
+        age = str(clue[1])
+
+        if age not in line_with_age:
+            return CheckResult.wrong(
+                "Can't find a correct age " +
+                "in the last line of output! " +
+                "Maybe you calculated the age wrong?\n\n" +
+                "Your last line: \n" + "\"" + lines[6] + "\""
+            )
+
+        for i in range(clue[2] + 1):
+            num_line = lines[i + 8].strip().replace(' ', '')
+            actual_num = f'{i}!'
+
+            if num_line != actual_num:
+                return CheckResult.wrong(
+                    f"Expected {i + 8}-th line: \n" +
+                    f"\"{actual_num}\"\n" +
+                    f"Your {i + 8}-th line: \n" +
+                    f"\"{num_line}\""
+                )
+
+        return CheckResult.correct()
 
 
 if __name__ == '__main__':
