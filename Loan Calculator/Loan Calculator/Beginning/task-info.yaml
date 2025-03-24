@@ -13,11 +13,8 @@ files:
     visible: false
     learner_created: false
 feedback_link: https://hyperskill.org/projects/90/stages/500/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    Your program didn't print the number of months required to replay the loan.
-  time: "Mon, 24 Mar 2025 18:27:53 UTC"
+  message: Congratulations!
+  time: "Mon, 24 Mar 2025 18:32:42 UTC"
 record: -1
