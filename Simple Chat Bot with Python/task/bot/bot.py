@@ -20,6 +20,6 @@ print('Now I will prove to you that I can count to any number you want.')
 number_count_to = int(input())
 i = 0
 while i <= number_count_to:
-    print(i, end = " !\n")
+    print(i, end=" !\n")
     i += 1
 print('Completed, have a nice day!')
