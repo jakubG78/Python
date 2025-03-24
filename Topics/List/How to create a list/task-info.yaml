@@ -1,0 +1,15 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: "Via single or double quotation marks: '', \"\"."
+  - text: "Via curly brackets: {}."
+  - text: "Via square brackets: []."
+  - text: Via list() function.
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6734#comment
+status: Solved
+record: -1
+local_check: false
