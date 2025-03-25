@@ -1,0 +1,17 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: "<pre><code class=\"python\">first_name, last_name = 'Ada', 'Lovelace'</code></pre>"
+  - text: <pre><code class="python">account_balance = 1023.55</code></pre>
+  - text: <pre><code class="python">city = 'New York'</code></pre>
+  - text: <pre><code class="python">full_name = None</code></pre>
+  - text: <pre><code class="python">2user = "Alice"</code></pre>
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/47596#comment
+status: Solved
+record: -1
+custom_name: Whose Code Line Is It Anyway?
+local_check: false
