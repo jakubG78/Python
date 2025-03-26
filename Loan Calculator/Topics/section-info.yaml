@@ -3,3 +3,5 @@ content:
   - Elif statement
   - Variables
   - Quotes and multi-line strings
+  - String formatting
+  - Math functions
